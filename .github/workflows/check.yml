@@ -16,4 +16,6 @@ jobs:
         run: ls -l
       - name: uname -a
         run: uname -a
+      - name: ontology pipeline
+        run: /home/stramp/run-ontology-pipeline.sh
 

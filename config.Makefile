@@ -45,7 +45,8 @@ ONTOLOGY_URI ?= https://braine.eccenca.dev/vocabulary/
 #SKIPMANUALTESTS ?= true
 
 # disable reasoning tests
-#SKIPLOGICTESTS ?= true
+SKIPLOGICTESTS ?= true
+SKIPCLOSURE ?= true
 
 
 ## Artifact generation
