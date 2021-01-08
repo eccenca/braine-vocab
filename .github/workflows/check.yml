@@ -1,0 +1,19 @@
+name: check
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  check:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: pwd
+        run: pwd
+      - name: ls
+        run: ls -l
+      - name: uname -a
+        run: uname -a
+
