@@ -5,7 +5,7 @@ on:
     branches: [develop]
 
 jobs:
-  check:
+  ontology-pipeline:
     runs-on: self-hosted
     steps:
       - name: Check out repository
