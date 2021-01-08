@@ -1,4 +1,4 @@
-name: check
+name: Ontology Pipeline
 
 on:
   push:
@@ -10,12 +10,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: pwd
-        run: pwd
-      - name: ls
-        run: ls -l
-      - name: uname -a
-        run: uname -a
-      - name: ontology pipeline
+      - name: Start Pipeline
         run: /home/stramp/run-ontology-pipeline.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: artifacts
 
