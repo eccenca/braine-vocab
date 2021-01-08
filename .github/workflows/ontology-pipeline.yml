@@ -14,6 +14,18 @@ jobs:
         run: /home/stramp/run-ontology-pipeline.sh
       - uses: actions/upload-artifact@v2
         with:
+          name: schema.ttl.dot.png
+          path: artifacts/schema.ttl.dot.png
+      - uses: actions/upload-artifact@v2
+        with:
+          name: schema.ttl.dot.svg
+          path: artifacts/schema.ttl.dot.svg
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ZIP
+          path: artifacts/*.zip
+      - uses: actions/upload-artifact@v2
+        with:
           name: artifacts
           path: artifacts
 
