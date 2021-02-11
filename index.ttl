@@ -8,31 +8,37 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix itopsprop: <https://vocab.eccenca.com/itops/property/> .
+@prefix itopsmeasureü: <https://vocab.eccenca.com/itops/property/measurement/> .
+@prefix itopstelemetryp: <https://vocab.eccenca.com/itops/property/telemetry/> .
+@prefix itopsunit: <https://vocab.eccenca.com/itops/unit/> .
+@base <https://vocab.eccenca.com/itops/> .
 
 : a owl:Ontology , voaf:Vocabulary ;
-  rdfs:label "braine: Project Vocabulary"@en ;
-  rdfs:comment "The BRAINE ontology consists of vocabularies for describing services, devices, workflows and constraints."@en ;
+  rdfs:label "ITOPS: IT Operations Ontology"@en ;
+  rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, monitoring and constraints."@en ;
   dct:issued "2021-01-08"^^xsd:date ;
   dct:modified "2021-01-08"^^xsd:date ;
   owl:versionInfo "SNAPSHOT" ;
   dct:rights "Copyright © 2021 eccenca GmbH" ;
   dct:publisher ecc:eccenca-GmbH ;
   <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/> ;
-  dct:creator ecc:emarx, <http://sebastian.tramp.name> ;
+  dct:creator <https://aksw.org/EdgardMarx>, <http://sebastian.tramp.name> ;
   void:vocabulary
     <http://purl.org/dc/terms/> ,
     <http://purl.org/vocab/vann/> ,
     <http://xmlns.com/foaf/0.1/> ;
-  vann:preferredNamespacePrefix "braine" ;
-  vann:preferredNamespaceUri "https://braine.eccenca.dev/vocabulary/" ;
+  vann:preferredNamespacePrefix "itops" ;
+  vann:preferredNamespaceUri "https://vocab.eccenca.com/itops/" ;
 .
 
 ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
   foaf:name "eccenca GmbH" ;
 .
 
-ecc:emarx a foaf:Person, dct:Agent ;
+<https://aksw.org/EdgardMarx> a foaf:Person, dct:Agent ;
   foaf:name "Edgard Marx" ;
 .
 
@@ -42,13 +48,124 @@ ecc:emarx a foaf:Person, dct:Agent ;
 
 <http://creativecommons.org/licenses/by/4.0/> rdfs:label "Creative Commons Attribution 4.0 International" .
 
-:Example a owl:Class ;
-  rdfs:label "Example Class"@en ;
-  rdfs:comment "Represents an Example Class"@en ;
+
+#################################################################
+#    Classes
+#################################################################
+
+:Node a owl:Class ;
+  rdfs:label "Node"@en ;
+  rdfs:comment "A node may be a virtual or physical machine."@en ;
   rdfs:isDefinedBy : ;
-  dct:issued "2014-12-15"^^xsd:date ;
-  dct:modified "2014-12-30"^^xsd:date ;
+  dct:issued "2021-01-05"^^xsd:date ;
 .
+
+:Telemetry a owl:Class ;
+  rdfs:label "Telemetry"@en ;
+  rdfs:comment "A transmited set measurements over a channel (internet, radio)."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Measurement a owl:Class ;
+  rdfs:label "Measurement"@en ;
+  rdfs:comment "The size, length, or amount of something, as established by measuring."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:ProcessingUnit a owl:Class ;
+  rdfs:label "Processing Unit"@en ;
+  rdfs:comment "A processing unit is a digital circuit which executes logical instructions."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:RAM a owl:Class ;
+  rdfs:label "Random Access Memory"@en ;
+  rdfs:comment "RAM is a form of volatile computer memory that can be read and changed in any order."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+unit:Millicore
+  rdf:type <http://qudt.org/schema/qudt/Unit> ;
+  <http://purl.org/dc/terms/description> "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."^^rdf:HTML ;
+# TODO <http://qudt.org/schema/qudt/conversionMultiplier> ? ;
+# TODO <http://qudt.org/schema/qudt/hasDimensionVector> ? ;
+<http://qudt.org/schema/qudt/hasQuantityKind> <http://qudt.org/vocab/quantitykind/Dimensionless> ;
+<http://qudt.org/schema/qudt/informativeReference> "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"^^xsd:anyURI ;
+# TODO <http://qudt.org/schema/qudt/isScalingOf> ? ;
+  <http://qudt.org/schema/qudt/symbol> "m" ;
+  rdfs:isDefinedBy : ;
+  rdfs:label "Millicore"@en ;
+.
+
+#################################################################
+#    Datatype Properties
+#################################################################
+
+itopstelemetryp:timestamp rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Telemetry ;
+                   rdfs:range xsd:date ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A timestamp in xsd:date format."@en ;
+                   rdfs:label "timestamp"@en ;
+.
+
+itopstelemetryp:window rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Telemetry ;
+                   rdfs:range xsd:integer ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Interval between current and the last telemetry in seconds."@en ;
+                   rdfs:label "window"@en ;
+.
+
+itopsmeasurep:value rdf:type owl:ObjectProperty;
+                   rdfs:domain :Measurement ;
+                   rdfs:range xsd:integer ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The numerical amount denoted by an integer."@en ;
+                   rdfs:label "value"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+itopsprop:telemetry rdf:type owl:ObjectProperty;
+                   rdfs:domain :Resource;
+                   rdfs:range :Telementry ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-01-08"^^xsd:date ;
+                   rdfs:comment "Telemetry belonging to the resource."@en ;
+                   rdfs:label "telementry"@en .
+
+itopstelemetryp:measurement rdf:type owl:ObjectProperty;
+                   rdfs:domain :Telemetry ;
+                   rdfs:range :Measurement ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-01-08"^^xsd:date ;
+                   rdfs:comment "The size, length, or amount of something, as established by measuring."@en ;
+                   rdfs:label "measurement"@en .
+
+itopsmeasurep:unit rdf:type owl:ObjectProperty;
+                   rdfs:domain :Measurement ;
+                   rdfs:range qudt:Unit ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A value or component that may be expressed in numbers in some unit."@en ;
+                   rdfs:label "quantity"@en .
+
+itopsmeasurep:source rdf:type owl:ObjectProperty;
+                   rdfs:domain :Measurement ;
+                   rdfs:range :Resource ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-01-08"^^xsd:date ;
+                   rdfs:comment "The resource from which the measurement belongs to."@en ;
+                   rdfs:label "measurement"@en .
 
 #
 # External vocabulary usage
@@ -93,3 +210,16 @@ vann:preferredNamespaceUri
     a owl:AnnotationProperty ;
     rdfs:isDefinedBy <http://purl.org/vocab/vann/> .
 
+<http://qudt.org/vocab/unit/KibiBYTE>
+  rdf:type <http://qudt.org/schema/qudt/Unit> ;
+  <http://purl.org/dc/terms/description> "The kibibyte is a multiple of the unit byte for digital information equivalent to 1024 bytes."^^rdf:HTML ;
+  <http://qudt.org/schema/qudt/conversionMultiplier> 5678.2617031470719747459655389854 ;
+  <http://qudt.org/schema/qudt/hasDimensionVector> <http://qudt.org/vocab/dimensionvector/A0E0L0I0M0H0T0D1> ;
+  <http://qudt.org/schema/qudt/hasQuantityKind> <http://qudt.org/vocab/quantitykind/Dimensionless> ;
+  <http://qudt.org/schema/qudt/informativeReference> "https://en.wikipedia.org/wiki/Byte#Multiple-byte_units"^^xsd:anyURI ;
+  <http://qudt.org/schema/qudt/isScalingOf> <http://qudt.org/vocab/unit/BYTE> ;
+  <http://qudt.org/schema/qudt/prefix> <http://qudt.org/2.1/vocab/prefix/Kibi> ;
+  <http://qudt.org/schema/qudt/symbol> "KiB" ;
+  rdfs:isDefinedBy <http://qudt.org/2.1/vocab/unit> ;
+  rdfs:label "KibiByte"@en ;
+.
