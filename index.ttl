@@ -11,7 +11,7 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix itopsprop: <https://vocab.eccenca.com/itops/property/> .
-@prefix itopsmeasureP: <https://vocab.eccenca.com/itops/property/measurement/> .
+@prefix itopsmeasurep: <https://vocab.eccenca.com/itops/property/measurement/> .
 @prefix itopstelemetryp: <https://vocab.eccenca.com/itops/property/telemetry/> .
 @prefix itopsunit: <https://vocab.eccenca.com/itops/unit/> .
 @base <https://vocab.eccenca.com/itops/> .
