@@ -1,6 +1,7 @@
 @prefix : <https://braine.eccenca.dev/vocabulary/> .
 @prefix ecc: <https://ns.eccenca.com/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -9,9 +10,10 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://www.qudt.org/2.1/vocab/unit> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix itopsprop: <https://braine.eccenca.dev/vocabulary/property/> .
-@prefix itopsmeasure: <https://braine.eccenca.dev/vocabulary/property/measurement/> .
+@prefix itopsmeasurep: <https://braine.eccenca.dev/vocabulary/property/measurement/> .
 @prefix itopstelemetryp: <https://braine.eccenca.dev/vocabulary/property/telemetry/> .
 @prefix itopsunit: <https://braine.eccenca.dev/vocabulary/unit/> .
 
@@ -87,8 +89,10 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-unit:Millicore
+:Millicore
   rdf:type <http://qudt.org/schema/qudt/Unit> ;
+  rdfs:label "Millicore"@en ;
+  rdfs:comment "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."@en ;
   <http://purl.org/dc/terms/description> "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."^^rdf:HTML ;
 # TODO <http://qudt.org/schema/qudt/conversionMultiplier> ? ;
 # TODO <http://qudt.org/schema/qudt/hasDimensionVector> ? ;
@@ -97,7 +101,6 @@ unit:Millicore
 # TODO <http://qudt.org/schema/qudt/isScalingOf> ? ;
   <http://qudt.org/schema/qudt/symbol> "m" ;
   rdfs:isDefinedBy : ;
-  rdfs:label "Millicore"@en ;
 .
 
 #################################################################
@@ -209,16 +212,16 @@ vann:preferredNamespaceUri
     a owl:AnnotationProperty ;
     rdfs:isDefinedBy <http://purl.org/vocab/vann/> .
 
-<http://qudt.org/vocab/unit/KibiBYTE>
-  rdf:type <http://qudt.org/schema/qudt/Unit> ;
-  <http://purl.org/dc/terms/description> "The kibibyte is a multiple of the unit byte for digital information equivalent to 1024 bytes."^^rdf:HTML ;
-  <http://qudt.org/schema/qudt/conversionMultiplier> 5678.2617031470719747459655389854 ;
-  <http://qudt.org/schema/qudt/hasDimensionVector> <http://qudt.org/vocab/dimensionvector/A0E0L0I0M0H0T0D1> ;
-  <http://qudt.org/schema/qudt/hasQuantityKind> <http://qudt.org/vocab/quantitykind/Dimensionless> ;
-  <http://qudt.org/schema/qudt/informativeReference> "https://en.wikipedia.org/wiki/Byte#Multiple-byte_units"^^xsd:anyURI ;
-  <http://qudt.org/schema/qudt/isScalingOf> <http://qudt.org/vocab/unit/BYTE> ;
-  <http://qudt.org/schema/qudt/prefix> <http://qudt.org/2.1/vocab/prefix/Kibi> ;
-  <http://qudt.org/schema/qudt/symbol> "KiB" ;
-  rdfs:isDefinedBy <http://qudt.org/2.1/vocab/unit> ;
-  rdfs:label "KibiByte"@en ;
-.
+# <http://qudt.org/vocab/unit/KibiBYTE>
+#  rdf:type <http://qudt.org/schema/qudt/Unit> ;
+#  <http://purl.org/dc/terms/description> "The kibibyte is a multiple of the unit byte for digital information equivalent to 1024 bytes."^^rdf:HTML ;
+#  <http://qudt.org/schema/qudt/conversionMultiplier> 5678.2617031470719747459655389854 ;
+#  <http://qudt.org/schema/qudt/hasDimensionVector> <http://qudt.org/vocab/dimensionvector/A0E0L0I0M0H0T0D1> ;
+#  <http://qudt.org/schema/qudt/hasQuantityKind> <http://qudt.org/vocab/quantitykind/Dimensionless> ;
+#  <http://qudt.org/schema/qudt/informativeReference> "https://en.wikipedia.org/wiki/Byte#Multiple-byte_units"^^xsd:anyURI ;
+#  <http://qudt.org/schema/qudt/isScalingOf> <http://qudt.org/vocab/unit/BYTE> ;
+#  <http://qudt.org/schema/qudt/prefix> <http://qudt.org/2.1/vocab/prefix/Kibi> ;
+#  <http://qudt.org/schema/qudt/symbol> "KiB" ;
+#  rdfs:isDefinedBy <http://qudt.org/2.1/vocab/unit> ;
+#  rdfs:label "KibiByte"@en ;
+#.
