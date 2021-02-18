@@ -10,11 +10,10 @@
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-@prefix itopsprop: <https://vocab.eccenca.com/itops/property/> .
-@prefix itopsmeasureü: <https://vocab.eccenca.com/itops/property/measurement/> .
-@prefix itopstelemetryp: <https://vocab.eccenca.com/itops/property/telemetry/> .
-@prefix itopsunit: <https://vocab.eccenca.com/itops/unit/> .
-@base <https://vocab.eccenca.com/itops/> .
+@prefix itopsprop: <https://braine.eccenca.dev/vocabulary/property/> .
+@prefix itopsmeasure: <https://braine.eccenca.dev/vocabulary/property/measurement/> .
+@prefix itopstelemetryp: <https://braine.eccenca.dev/vocabulary/property/telemetry/> .
+@prefix itopsunit: <https://braine.eccenca.dev/vocabulary/unit/> .
 
 : a owl:Ontology , voaf:Vocabulary ;
   rdfs:label "ITOPS: IT Operations Ontology"@en ;
