@@ -19,7 +19,7 @@
 
 : a owl:Ontology , voaf:Vocabulary ;
   rdfs:label "ITOPS: IT Operations Ontology"@en ;
-  rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, monitoring and constraints."@en ;
+  rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, values and constraints."@en ;
   dct:issued "2021-01-08"^^xsd:date ;
   dct:modified "2021-01-08"^^xsd:date ;
   owl:versionInfo "SNAPSHOT" ;
@@ -69,6 +69,7 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
 .
 
 :Measurement a owl:Class ;
+  rdfs:subClassOf qudt:Quantity ;
   rdfs:label "Measurement"@en ;
   rdfs:comment "The size, length, or amount of something, as established by measuring."@en ;
   rdfs:isDefinedBy : ;
@@ -126,8 +127,9 @@ itopstelemetryp:window rdf:type owl:DatatypeProperty;
 .
 
 itopsmeasurep:value rdf:type owl:ObjectProperty;
+                   rdfs:subPropertyOf qudt:value ;
                    rdfs:domain :Measurement ;
-                   rdfs:range xsd:integer ;
+                   rdfs:range rdfs:Literal ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "The numerical amount denoted by an integer."@en ;
@@ -154,6 +156,7 @@ itopstelemetryp:measurement rdf:type owl:ObjectProperty;
                    rdfs:label "measurement"@en .
 
 itopsmeasurep:unit rdf:type owl:ObjectProperty;
+                   rdfs:subPropertyOf qudt:unit ;
                    rdfs:domain :Measurement ;
                    rdfs:range qudt:Unit ;
                    rdfs:isDefinedBy : ;
