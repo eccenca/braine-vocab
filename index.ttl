@@ -1,4 +1,4 @@
-@prefix : <https://braine.eccenca.dev/vocabulary/> .
+@prefix : <https://braine.eccenca.dev/vocabulary/itops#> .
 @prefix ecc: <https://ns.eccenca.com/> .
 @prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -12,12 +12,12 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://www.qudt.org/2.1/vocab/unit> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-@prefix itopsprop: <https://braine.eccenca.dev/vocabulary/property/> .
-@prefix itopsmeasurep: <https://braine.eccenca.dev/vocabulary/property/measurement/> .
-@prefix itopstelemetryp: <https://braine.eccenca.dev/vocabulary/property/telemetry/> .
-@prefix itopsunit: <https://braine.eccenca.dev/vocabulary/unit/> .
+@prefix itopsp: <https://braine.eccenca.dev/vocabulary/itops/property#> .
+@prefix itopsmeasurep: <https://braine.eccenca.dev/vocabulary/itops/measurement/property#> .
+@prefix itopstelemetryp: <https://braine.eccenca.dev/vocabulary/itops/telemetry/property#> .
+@prefix itopsunit: <https://braine.eccenca.dev/vocabulary/measurement/unit#> .
 
-: a owl:Ontology , voaf:Vocabulary ;
+: rdf:type owl:Ontology , voaf:Vocabulary ;
   rdfs:label "ITOPS: IT Operations Ontology"@en ;
   rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, values and constraints."@en ;
   dct:issued "2021-01-08"^^xsd:date ;
@@ -32,7 +32,7 @@
     <http://purl.org/vocab/vann/> ,
     <http://xmlns.com/foaf/0.1/> ;
   vann:preferredNamespacePrefix "itops" ;
-  vann:preferredNamespaceUri "https://vocab.eccenca.com/itops/" ;
+  vann:preferredNamespaceUri "https://braine.eccenca.dev/vocabulary/itops#" ;
 .
 
 ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
@@ -54,21 +54,21 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
 #    Classes
 #################################################################
 
-:Node a owl:Class ;
+:Node rdf:type owl:Class ;
   rdfs:label "Node"@en ;
   rdfs:comment "A node may be a virtual or physical machine."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:Telemetry a owl:Class ;
+:Telemetry rdf:type owl:Class ;
   rdfs:label "Telemetry"@en ;
   rdfs:comment "A transmited set measurements over a channel (internet, radio)."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:Measurement a owl:Class ;
+:Measurement rdf:type owl:Class ;
   rdfs:subClassOf qudt:Quantity ;
   rdfs:label "Measurement"@en ;
   rdfs:comment "The size, length, or amount of something, as established by measuring."@en ;
@@ -76,22 +76,21 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:ProcessingUnit a owl:Class ;
+:ProcessingUnit rdf:type owl:Class ;
   rdfs:label "Processing Unit"@en ;
   rdfs:comment "A processing unit is a digital circuit which executes logical instructions."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:RAM a owl:Class ;
+:RAM rdf:type owl:Class ;
   rdfs:label "Random Access Memory"@en ;
   rdfs:comment "RAM is a form of volatile computer memory that can be read and changed in any order."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:Millicore
-  rdf:type <http://qudt.org/schema/qudt/Unit> ;
+itopsunit:Millicore rdf:type <http://qudt.org/schema/qudt/Unit> ;
   rdfs:label "Millicore"@en ;
   rdfs:comment "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."@en ;
   <http://purl.org/dc/terms/description> "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."^^rdf:HTML ;
@@ -139,7 +138,7 @@ itopsmeasurep:value rdf:type owl:ObjectProperty;
 #    Object Properties
 #################################################################
 
-itopsprop:telemetry rdf:type owl:ObjectProperty;
+itopsp:telemetry rdf:type owl:ObjectProperty;
                    rdfs:domain :Resource;
                    rdfs:range :Telementry ;
                    rdfs:isDefinedBy : ;
