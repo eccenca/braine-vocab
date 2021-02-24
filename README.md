@@ -10,6 +10,3 @@ Agenda
 - (WHERE) Define an abstract vocabulary for instance-inventory description (hardware and software) 
 - (WHAT) Define an abstract vocabulary for service description
 - (HOW and WHEN) Define an abstract vocabuary for workflow execution (service orchestration)
-
-
-
