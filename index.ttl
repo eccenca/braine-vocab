@@ -125,7 +125,7 @@ itopstelemetryp:window rdf:type owl:DatatypeProperty;
                    rdfs:label "window"@en ;
 .
 
-itopsmeasurep:value rdf:type owl:ObjectProperty;
+itopsmeasurep:value rdf:type owl:DatatypeProperty;
                    rdfs:subPropertyOf qudt:value ;
                    rdfs:domain :Measurement ;
                    rdfs:range rdfs:Literal ;
