@@ -131,7 +131,7 @@ itopsmeasurep:value rdf:type owl:DatatypeProperty;
                    rdfs:range rdfs:Literal ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "The numerical amount denoted by an integer."@en ;
+                   rdfs:comment "The value (numerical or not) of a mesurement."@en ;
                    rdfs:label "value"@en .
 
 #################################################################
