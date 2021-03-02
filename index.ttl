@@ -169,7 +169,7 @@ itopsmeasurep:source rdf:type owl:ObjectProperty;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
                    rdfs:comment "The resource from which the measurement belongs to."@en ;
-                   rdfs:label "measurement"@en .
+                   rdfs:label "source"@en .
 
 #
 # External vocabulary usage
