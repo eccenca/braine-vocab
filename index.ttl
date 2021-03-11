@@ -201,6 +201,13 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
+:Address rdf:type :KubernetesObjectStatus ;
+  rdfs:label "Address"@en ;
+  rdfs:comment "The address of a Kubernetes object."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
 :Info rdf:type :KubernetesClass ;
   rdfs:label "Info"@en ;
   rdfs:comment "A Kubernetes Object information."@en ;
@@ -214,6 +221,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
+
 
 #################################################################
 #    Datatype Properties
@@ -259,7 +267,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "manifest"@en .
 
 :resourceVersion rdf:type owl:DatatypeProperty;
-                   rdfs:domain :KubernetesResource ;
+                   rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -267,7 +275,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "resource version"@en .
 
 :selfLink rdf:type owl:DatatypeProperty;
-                   rdfs:domain :KubernetesResource ;
+                   rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -275,7 +283,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "self link"@en .
 
 :uid rdf:type owl:DatatypeProperty;
-                   rdfs:domain :KubernetesResource ;
+                   rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -298,13 +306,13 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The type of the address."@en ;
                    rdfs:label "type"@en .
 
-:cpu rdf:type owl:DatatypeProperty;
+:cpus rdf:type owl:DatatypeProperty;
                    rdfs:domain :KubernetesObjectStatus ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "The number of processing units."@en ;
-                   rdfs:label "cpu"@en .
+                   rdfs:label "cpus"@en .
 
 :ephemeral-storage rdf:type owl:DatatypeProperty;
                    rdfs:domain :KubernetesObjectStatus ;
@@ -496,12 +504,12 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #################################################################
 
 :telemetry rdf:type owl:ObjectProperty;
-                   rdfs:domain :Resource;
-                   rdfs:range :Telementry ;
+                   rdfs:domain :KubernetesNode;
+                   rdfs:range :Telemetry ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
                    rdfs:comment "Telemetry belonging to the resource."@en ;
-                   rdfs:label "telementry"@en .
+                   rdfs:label "telemetry"@en .
 
 :measurement rdf:type owl:ObjectProperty;
                    rdfs:domain :Telemetry ;
@@ -577,9 +585,25 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 # http://answers.semanticweb.com/questions/1105/owl-dl-compliance-why-redefining-existing-conceptspropeties-in-own-ontology
 #
 
+<http://qudt.org/schema/qudt/informativeReference>
+  a owl:AnnotationProperty ;
+  rdfs:isDefinedBy <http://qudt.org/schema/qudt/> .
+
+<http://qudt.org/schema/qudt/symbol>
+  a owl:AnnotationProperty ;
+  rdfs:isDefinedBy <http://qudt.org/schema/qudt/> .
+
+<http://qudt.org/schema/qudt/hasQuantityKind>
+  a owl:AnnotationProperty ;
+  rdfs:isDefinedBy <http://qudt.org/schema/qudt/> .
+
 <http://creativecommons.org/ns#license>
     a owl:AnnotationProperty ;
     rdfs:isDefinedBy <http://creativecommons.org/ns> .
+
+dct:description
+    a owl:AnnotationProperty ;
+    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
 
 dct:creator
     a owl:AnnotationProperty ;
