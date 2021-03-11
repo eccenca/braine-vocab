@@ -12,10 +12,6 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://www.qudt.org/2.1/vocab/unit> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-@prefix itopsp: <https://braine.eccenca.dev/vocabulary/itops/property#> .
-@prefix itopsmeasurep: <https://braine.eccenca.dev/vocabulary/itops/measurement/property#> .
-@prefix itopstelemetryp: <https://braine.eccenca.dev/vocabulary/itops/telemetry/property#> .
-@prefix itopsunit: <https://braine.eccenca.dev/vocabulary/measurement/unit#> .
 
 : rdf:type owl:Ontology , voaf:Vocabulary ;
   rdfs:label "ITOPS: IT Operations Ontology"@en ;
@@ -35,15 +31,15 @@
   vann:preferredNamespaceUri "https://braine.eccenca.dev/vocabulary/itops#" ;
 .
 
-ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
+ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   foaf:name "eccenca GmbH" ;
 .
 
-<https://aksw.org/EdgardMarx> a foaf:Person, dct:Agent ;
+<https://aksw.org/EdgardMarx> rdf:type foaf:Person, dct:Agent ;
   foaf:name "Edgard Marx" ;
 .
 
-<http://sebastian.tramp.name> a foaf:Person, dct:Agent ;
+<http://sebastian.tramp.name> rdf:type foaf:Person, dct:Agent ;
   foaf:name "Sebastian Tramp" ;
 .
 
@@ -53,6 +49,20 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
 #################################################################
 #    Classes
 #################################################################
+
+:Deployable rdf:type owl:Class ;
+  rdfs:label "Deployable"@en ;
+  rdfs:comment "An application or set of applications that can be deployed."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Service rdf:type :Deployable ;
+  rdfs:label "Service"@en ;
+  rdfs:comment "Service is a software functionality or a set of software functionalities (such as the retrieval of specified information or the execution of a set of operations) with a purpose that different clients can reuse for different purposes, together with the policies that should control its usage (based on the identity of the client requesting the service, for example)."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
 
 :Node rdf:type owl:Class ;
   rdfs:label "Node"@en ;
@@ -90,7 +100,7 @@ ecc:eccenca-GmbH a foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-itopsunit:Millicore rdf:type <http://qudt.org/schema/qudt/Unit> ;
+:Millicore rdf:type qudt:Unit ;
   rdfs:label "Millicore"@en ;
   rdfs:comment "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."@en ;
   <http://purl.org/dc/terms/description> "The millicore is a multiple of the unit cores for digital information equivalent to 1/1000 of a core."^^rdf:HTML ;
@@ -104,10 +114,112 @@ itopsunit:Millicore rdf:type <http://qudt.org/schema/qudt/Unit> ;
 .
 
 #################################################################
+#    Kubernetes Classes
+#################################################################
+
+:KubernetesClass rdf:type owl:Class ;
+  rdfs:label "Kubernetes Class"@en ;
+  rdfs:comment "A Kubernetes Class."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubernetesObject rdf:type :KubernetesClass ;
+  rdfs:label "Kubernetes Object"@en ;
+  rdfs:comment "A Kubernetes Object (Node, POD)."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubernetesNode rdf:type :KubernetesObject, :Node ;
+  rdfs:label "Kubernetes Node"@en ;
+  rdfs:comment "A Kubernetes Node."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Annotation rdf:type :KubernetesClass ;
+  rdfs:label "Annotation"@en ;
+  rdfs:comment "A custom annoatation set by an application."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Status rdf:type :KubernetesClass ;
+  rdfs:label "Status"@en ;
+  rdfs:comment "The Kubernetes Object status."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubernetesObjectStatus rdf:type :KubernetesClass ;
+ rdfs:label "Kubernetes Object Status"@en ;
+  rdfs:comment "The status of a Kubernetes Object."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Allocable rdf:type :KubernetesObjectStatus ;
+  rdfs:label "Allocable"@en ;
+  rdfs:comment "The allocable set of computational resources."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Capacity rdf:type :KubernetesObjectStatus ;
+  rdfs:label "Capacity"@en ;
+  rdfs:comment "The computational capacity of a Kubernetes Object."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+# ----
+:Condition rdf:type :KubernetesObjectStatus ;
+  rdfs:label "Condition"@en ;
+  rdfs:comment "The condition status a Kubernetes Object."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:DaemonEndpoint rdf:type :KubernetesClass ;
+  rdfs:label "Daemon Endpoint"@en ;
+  rdfs:comment "A daemon endpoint."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubeletEndpoint rdf:type :DaemonEndpoint ;
+  rdfs:label "Kubelet Endpoint"@en ;
+  rdfs:comment "The endpoint of the Kubelet."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Image rdf:type :KubernetesClass ;
+  rdfs:label "Image"@en ;
+  rdfs:comment "A Docker image."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:Info rdf:type :KubernetesClass ;
+  rdfs:label "Info"@en ;
+  rdfs:comment "A Kubernetes Object information."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:NodeInfo rdf:type :Info ;
+  rdfs:label "Node Info"@en ;
+  rdfs:comment "A Kubernetes Node information."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+#################################################################
 #    Datatype Properties
 #################################################################
 
-itopstelemetryp:timestamp rdf:type owl:DatatypeProperty;
+:timestamp rdf:type owl:DatatypeProperty;
                    rdfs:domain :Telemetry ;
                    rdfs:range xsd:date ;
                    rdfs:isDefinedBy : ;
@@ -116,7 +228,7 @@ itopstelemetryp:timestamp rdf:type owl:DatatypeProperty;
                    rdfs:label "timestamp"@en ;
 .
 
-itopstelemetryp:window rdf:type owl:DatatypeProperty;
+:window rdf:type owl:DatatypeProperty;
                    rdfs:domain :Telemetry ;
                    rdfs:range xsd:integer ;
                    rdfs:isDefinedBy : ;
@@ -125,7 +237,7 @@ itopstelemetryp:window rdf:type owl:DatatypeProperty;
                    rdfs:label "window"@en ;
 .
 
-itopsmeasurep:value rdf:type owl:DatatypeProperty;
+:value rdf:type owl:DatatypeProperty;
                    rdfs:subPropertyOf qudt:value ;
                    rdfs:domain :Measurement ;
                    rdfs:range rdfs:Literal ;
@@ -135,10 +247,255 @@ itopsmeasurep:value rdf:type owl:DatatypeProperty;
                    rdfs:label "value"@en .
 
 #################################################################
+#   Kubernetes Datatype Properties
+#################################################################
+
+:manifest rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Deployable ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A set of instructions describing how to perform a deployment."@en ;
+                   rdfs:label "manifest"@en .
+
+:resourceVersion rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesResource ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The Kubernetes resource version."@en ;
+                   rdfs:label "resource version"@en .
+
+:selfLink rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesResource ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A link to the Kubernetes Object."@en ;
+                   rdfs:label "self link"@en .
+
+:uid rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesResource ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The UID of the Kubernetes Object."@en ;
+                   rdfs:label "uid"@en .
+
+:address rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Address ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The Address of the Kubernetes Object."@en ;
+                   rdfs:label "address"@en .
+
+:type rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Address ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The type of the address."@en ;
+                   rdfs:label "type"@en .
+
+:cpu rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObjectStatus ;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The number of processing units."@en ;
+                   rdfs:label "cpu"@en .
+
+:ephemeral-storage rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObjectStatus ;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The volatile temporary storage attached to your instances which is only present during the running lifetime of the instance."@en ;
+                   rdfs:label "ephemeral-storage"@en .
+
+:hugepages-1Gi rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObjectStatus ;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Number of Huge Pages of 1 Gibibyte."@en ;
+                   rdfs:label "hugepages-1Gi"@en .
+
+:hugepages-2Mi rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObjectStatus ;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Number of Huge Pages of 2 Mibibytes."@en ;
+                   rdfs:label "hugepages-2Mi"@en .
+
+:pods rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObjectStatus ;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Maximum Number of allocable Pods."@en ;
+                   rdfs:label "pods"@en .
+
+#################################################################
+#   Condition Datatype Properties
+#################################################################
+
+:lastHeartbeatTime rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Status;
+                   rdfs:range xsd:date ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The last heartbeat time of the Kubernetes object."@en ;
+                   rdfs:label "last heartbeat time"@en .
+
+:lastTransitionTime rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Condition;
+                   rdfs:range xsd:date ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "the last transition time of the Kubernetes Object."@en ;
+                   rdfs:label "last transition time"@en .
+
+:message rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Condition;
+                   rdfs:range xsd:string;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Message condition of the Kubernetes Object."@en ;
+                   rdfs:label "message"@en .
+
+:reason rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Condition;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The reason for the condition."@en ;
+                   rdfs:label "reason"@en .
+
+:status rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Condition;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The status of the Kubernetes Object."@en ;
+                   rdfs:label "status"@en .
+
+:type rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Condition;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The type of the condition."@en ;
+                   rdfs:label "type"@en .
+
+#################################################################
+#   Daemon Endpoint Datatype Properties
+#################################################################
+
+:port rdf:type owl:DatatypeProperty;
+                   rdfs:domain :DaemonEndpoint;
+                   rdfs:range xsd:int ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The communication port of the Daemon Endpoint."@en ;
+                   rdfs:label "port"@en .
+
+#################################################################
+#   Image Datatype Properties
+#################################################################
+
+:size rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Image;
+                   rdfs:range xsd:integer ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The size in bytes of the image."@en ;
+                   rdfs:label "image"@en .
+
+
+#################################################################
+#   NodeInfo Datatype Properties
+#################################################################
+
+:architecture rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The processing architecture of the Kubernetes Node."@en ;
+                   rdfs:label "architecture"@en .
+
+:boodID rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The ID of the boot of the Kubernetes Node."@en ;
+                   rdfs:label "boot ID"@en .
+
+:containerRuntimeVersion rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The version of the container running at the Kubernetes Node."@en ;
+                   rdfs:label "container runtime version"@en .
+
+:kernelVersion rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The version of the kernel running at the Kubernetes Node."@en ;
+                   rdfs:label "kernel version"@en .
+
+:kubeProxyVersion rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The version of the Kubernetes proxy running at the Kubernetes Node."@en ;
+                   rdfs:label "kube proxy version"@en .
+
+:machineID rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The ID of the machine running at the Kubernetes Node."@en ;
+                   rdfs:label "machine ID"@en .
+
+:operationalSystem rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The operational system running at the Kubernetes Node."@en ;
+                   rdfs:label "operational system"@en .
+
+:osImage rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The name of the image running the oprational system operational system at the Kubernetes Node."@en ;
+                   rdfs:label "operational system image"@en .
+
+:systemUUID rdf:type owl:DatatypeProperty;
+                   rdfs:domain :NodeInfo;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The Universal Unique Identifier (UUID) of the system running at the Kubernetes Node."@en ;
+                   rdfs:label "system UUID"@en .
+
+#################################################################
 #    Object Properties
 #################################################################
 
-itopsp:telemetry rdf:type owl:ObjectProperty;
+:telemetry rdf:type owl:ObjectProperty;
                    rdfs:domain :Resource;
                    rdfs:range :Telementry ;
                    rdfs:isDefinedBy : ;
@@ -146,30 +503,68 @@ itopsp:telemetry rdf:type owl:ObjectProperty;
                    rdfs:comment "Telemetry belonging to the resource."@en ;
                    rdfs:label "telementry"@en .
 
-itopstelemetryp:measurement rdf:type owl:ObjectProperty;
+:measurement rdf:type owl:ObjectProperty;
                    rdfs:domain :Telemetry ;
                    rdfs:range :Measurement ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
-                   rdfs:comment "The size, length, or amount of something, as established by measuring."@en ;
+                   rdfs:comment "The size, length, or amount of a Kubernetes resource."@en ;
                    rdfs:label "measurement"@en .
 
-itopsmeasurep:unit rdf:type owl:ObjectProperty;
+:unit rdf:type owl:ObjectProperty;
                    rdfs:subPropertyOf qudt:unit ;
                    rdfs:domain :Measurement ;
                    rdfs:range qudt:Unit ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "A value or component that may be expressed in numbers in some unit."@en ;
-                   rdfs:label "quantity"@en .
+                   rdfs:label "unit"@en .
 
-itopsmeasurep:source rdf:type owl:ObjectProperty;
+:source rdf:type owl:ObjectProperty;
                    rdfs:domain :Measurement ;
-                   rdfs:range :Resource ;
+                   rdfs:range :KubernetesObject ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
-                   rdfs:comment "The resource from which the measurement belongs to."@en ;
+                   rdfs:comment "The Kubernetes object from which the measurement belongs to."@en ;
                    rdfs:label "source"@en .
+
+
+#################################################################
+#   Kubernetes Object Properties
+#################################################################
+
+:status rdf:type owl:DatatypeProperty;
+                   rdfs:domain :KubernetesObject ;
+                   rdfs:range :Status ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The status of the Kubernetes object."@en ;
+                   rdfs:label "status"@en .
+
+:allocable rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Status ;
+                   rdfs:range :Allocable ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The allocable computational resources."@en ;
+                   rdfs:label "allocable"@en .
+
+
+:capacity rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Status ;
+                   rdfs:range :Allocable ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The computational capacity of the Kubernetes object."@en ;
+                   rdfs:label "capacity"@en .
+
+:address rdf:type owl:DatatypeProperty;
+                   rdfs:domain :Status;
+                   rdfs:range :Address ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "An address of the Kubernetes object."@en ;
+                   rdfs:label "address"@en .
 
 #
 # External vocabulary usage
