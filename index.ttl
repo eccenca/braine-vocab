@@ -504,7 +504,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #################################################################
 
 :telemetry rdf:type owl:ObjectProperty;
-                   rdfs:domain :KubernetesNode;
+                   rdfs:domain :KubernetesObject;
                    rdfs:range :Telemetry ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
@@ -516,7 +516,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:range :Measurement ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
-                   rdfs:comment "The size, length, or amount of a Kubernetes resource."@en ;
+                   rdfs:comment "The size, length, or amount of a resource."@en ;
                    rdfs:label "measurement"@en .
 
 :unit rdf:type owl:ObjectProperty;
@@ -530,10 +530,10 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 
 :source rdf:type owl:ObjectProperty;
                    rdfs:domain :Measurement ;
-                   rdfs:range :KubernetesObject ;
+                   rdfs:range rdfs:Resource ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
-                   rdfs:comment "The Kubernetes object from which the measurement belongs to."@en ;
+                   rdfs:comment "The resource from which the measurement belongs to."@en ;
                    rdfs:label "source"@en .
 
 
@@ -571,7 +571,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:range :Address ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "An address of the Kubernetes object."@en ;
+                   rdfs:comment "A network address of the Kubernetes object."@en ;
                    rdfs:label "address"@en .
 
 #
