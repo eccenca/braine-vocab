@@ -590,7 +590,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
                    rdfs:comment "Telemetry belonging to the resource."@en ;
-                   rdfs:label "telemetry"@en .
+                   rdfs:label "belongs to"@en .
 
 :measurement rdf:type owl:ObjectProperty ;
                    rdfs:domain :Telemetry ;
