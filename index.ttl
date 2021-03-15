@@ -339,21 +339,21 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The UID of the Kubernetes Object."@en ;
                    rdfs:label "uid"@en .
 
-:address rdf:type owl:DatatypeProperty ;
+:addressValue rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Address ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "The Address of the Kubernetes Object."@en ;
-                   rdfs:label "address"@en .
+                   rdfs:comment "The network address of the Kubernetes Object."@en ;
+                   rdfs:label "address value"@en .
 
-:type rdf:type owl:DatatypeProperty ;
+:addressType rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Address ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "The type of the address."@en ;
-                   rdfs:label "type"@en .
+                   rdfs:comment "The type of the network address."@en ;
+                   rdfs:label "address type"@en .
 
 :cpus rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources ;
@@ -584,9 +584,9 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    Object Properties
 #################################################################
 
-:telemetry rdf:type owl:ObjectProperty ;
-                   rdfs:domain :KubernetesObject ;
-                   rdfs:range :Telemetry ;
+:belongsTo rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Telemetry ;
+                   rdfs:range :KubernetesObject ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-01-08"^^xsd:date ;
                    rdfs:comment "Telemetry belonging to the resource."@en ;
