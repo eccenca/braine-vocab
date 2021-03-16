@@ -176,22 +176,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:Allocable rdf:type owl:Class ;
-  rdfs:subClassOf :ComputationalResources ;
-  rdfs:label "Allocable"@en ;
-  rdfs:comment "The allocable set of computational resources."@en ;
-  rdfs:isDefinedBy : ;
-  dct:issued "2021-01-05"^^xsd:date ;
-.
-
-:Capacity rdf:type owl:Class ;
-  rdfs:subClassOf :ComputationalResources ;
-  rdfs:label "Capacity"@en ;
-  rdfs:comment "The computational capacity of a Kubernetes Object."@en ;
-  rdfs:isDefinedBy : ;
-  dct:issued "2021-01-05"^^xsd:date ;
-.
-
 :Condition rdf:type owl:Class ;
   rdfs:subClassOf :KubernetesClass ;
   rdfs:label "Condition"@en ;
@@ -394,14 +378,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "Maximum Number of allocable Pods."@en ;
                    rdfs:label "pods"@en .
-
-:computationalResources rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :NodeStatus ;
-                   rdfs:range :ComputationalResources ;
-                   rdfs:isDefinedBy : ;
-                   dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "Computational Resources of a Kubernetes Node."@en ;
-                   rdfs:label "computational resources"@en .
 
 :nodeInfo rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeStatus ;
@@ -647,7 +623,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 
 :allocable rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeStatus ;
-                   rdfs:range :Allocable ;
+                   rdfs:range :ComputationalResources ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "The allocable computational resources."@en ;
@@ -655,7 +631,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 
 :capacity rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeStatus ;
-                   rdfs:range :Capacity ;
+                   rdfs:range :ComputationalResources ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "The computational capacity of the Kubernetes object."@en ;
