@@ -57,14 +57,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:Service rdf:type owl:Class ;
-   rdfs:subClassOf :Deployable ;
-  rdfs:label "Service"@en ;
-  rdfs:comment "Service is a software functionality or a set of software functionalities (such as the retrieval of specified information or the execution of a set of operations) with a purpose that different clients can reuse for different purposes, together with the policies that should control its usage (based on the identity of the client requesting the service, for example)."@en ;
-  rdfs:isDefinedBy : ;
-  dct:issued "2021-01-05"^^xsd:date ;
-.
-
 :Node rdf:type owl:Class ;
   rdfs:label "Node"@en ;
   rdfs:comment "A node may be a virtual or physical machine."@en ;
@@ -200,8 +192,16 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
-:DiskImage rdf:type owl:Class ;
+:Image rdf:type owl:Class ;
   rdfs:subClassOf :KubernetesClass ;
+  rdfs:label "Image"@en ;
+  rdfs:comment "A replica of the contents of a storage device."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:DiskImage rdf:type owl:Class ;
+  rdfs:subClassOf :Image ;
   rdfs:label "Disk Image"@en ;
   rdfs:comment "A disk image."@en ;
   rdfs:isDefinedBy : ;
@@ -239,6 +239,140 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-01-05"^^xsd:date ;
 .
 
+:Event rdf:type owl:Class ;
+  rdfs:label "Event"@en ;
+  rdfs:comment "An event."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubernetesEvent rdf:type owl:Class ;
+  rdfs:subClassOf :Event ;
+  rdfs:label "Kubernetes Event"@en ;
+  rdfs:comment "A Kubernetes event."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+:KubernetesUpdateEvent rdf:type owl:Class ;
+  rdfs:subClassOf :KubernetesEvent ;
+  rdfs:label "Kubernetes Update Event"@en ;
+  rdfs:comment "A Kubernetes update event."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-01-05"^^xsd:date ;
+.
+
+#################################################################
+#    BRAINE Classes
+#################################################################
+
+:ServiceProfile rdf:type owl:Class ;
+  rdfs:subClassOf :Deployable ;
+  rdfs:label "Service Profile"@en ;
+  rdfs:comment "A service profile defines a functionality or a set of software functionalities (such as the retrieval of specified information or the execution of a set of operations) with a purpose that different clients can reuse for different purposes, together with the policies that should control its usage (based on the identity of the client requesting the service, for example)."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:ServiceDeploymentSpecification rdf:type owl:Class ;
+  rdfs:label "Service Deployment Specification"@en ;
+  rdfs:comment "A deployment specification containing what (service profile) and how (node) to execute a service."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Deployment rdf:type owl:Class ;
+  rdfs:label "Deployment"@en ;
+  rdfs:comment "A deployment of a service specification containing meta information such as status, logs, and failures."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:DockerImage rdf:type owl:Class ;
+  rdfs:subClassOf :Image;
+  rdfs:subClassOf :Deployable;
+  rdfs:label "Docker Image"@en ;
+  rdfs:comment "A Docker container image description."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:ImageState rdf:type owl:Class ;
+  rdfs:label "Image State"@en ;
+  rdfs:comment "The state of an image."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:New rdf:type  owl:Class ;
+  rdfs:subClassOf :ImageState ;
+  rdfs:label "New"@en ;
+  rdfs:comment "The state of an image that has being just created."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Review rdf:type  owl:Class ;
+  rdfs:subClassOf :ImageState ;
+  rdfs:label "Review"@en ;
+  rdfs:comment "The state of an image that is under review."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Ready rdf:type  owl:Class ;
+  rdfs:subClassOf :ImageState ;
+  rdfs:label "Ready"@en ;
+  rdfs:comment "The state of an image that is ready for being deployed."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:DeploymentState rdf:type  owl:Class ;
+  rdfs:label "Deployment State"@en ;
+  rdfs:comment "The state of a Deployment."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Waiting rdf:type  owl:Class ;
+  rdfs:subClassOf :DeploymentState ;
+  rdfs:label "Waiting"@en ;
+  rdfs:comment "The state of a Deployment that is waiting to be deployed."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Running rdf:type  owl:Class ;
+  rdfs:subClassOf :DeploymentState ;
+  rdfs:label "Running"@en ;
+  rdfs:comment "The state of a Deployment that is running."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:StopClean rdf:type  owl:Class ;
+  rdfs:subClassOf :DeploymentState ;
+  rdfs:label "Stop Clean"@en ;
+  rdfs:comment "The state of a Deployment that stopped."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:StopWithError rdf:type  owl:Class ;
+  rdfs:subClassOf :DeploymentState ;
+  rdfs:label "Stop With Error"@en ;
+  rdfs:comment "The state of a Deployment that has stopped due to an error."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:Log rdf:type  owl:Class ;
+  rdfs:label "Log"@en ;
+  rdfs:comment "The records or either events that occur in software runs, or messages between different agents of a communication software state."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
 
 #################################################################
 #    Datatype Properties
@@ -456,6 +590,61 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "type"@en .
 
 #################################################################
+#    BRAINE Datatype Properties
+#################################################################
+
+:numberOfNetworkSlices rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:range xsd:int ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+  rdfs:comment "The number of network slices."@en ;
+  rdfs:label "number of network slices"@en ;
+.
+
+:numberOfNetworkTenants rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:range xsd:int ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+  rdfs:comment "The number of network tenants."@en ;
+  rdfs:label "number of tentants"@en ;
+.
+
+:hasEncryption rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:range xsd:boolean ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+  rdfs:comment "Specify the use of encryption by the service executor."@en ;
+  rdfs:label "has encryption"@en ;
+.
+
+:startDate rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Log ;
+                   rdfs:range xsd:date ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The log starting date."@en ;
+                   rdfs:label "start date"@en .
+
+:content rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Log ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The log content."@en ;
+                   rdfs:label "content"@en .
+
+:agent rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Log ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The agent identifier URI or name."@en ;
+                   rdfs:label "agent"@en .
+
+#################################################################
 #   Daemon Endpoint Datatype Properties
 #################################################################
 
@@ -661,6 +850,63 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "The status of the Kubernetes Node."@en ;
                    rdfs:label "node status"@en .
+
+#################################################################
+#    Event Object Properties
+#################################################################
+
+:object rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :KubernetesEvent ;
+                   rdfs:range :KubernetesObject ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Event's object source."@en ;
+                   rdfs:label "object"@en .
+
+################################################################
+#    BRAINE Object Properties
+#################################################################
+
+:serviceProfile rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ServiceDeploymentSpecification ;
+                   rdfs:range :ServiceProfile ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A Service Profile to be deployed."@en ;
+                   rdfs:label "service profile"@en .
+
+:placement rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ServiceDeploymentSpecification ;
+                   rdfs:range :KubernetesNode ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "A Kubernetes Node to be used for service profile deployment."@en ;
+                   rdfs:label "placement"@en .
+
+:hasDeploymentSpecification rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Deployment ;
+                   rdfs:range :ServiceDeploymentSpecification ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The Service Deployment Specification."@en ;
+                   rdfs:label "has deployment specification"@en .
+
+:hasDeploymentState rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Deployment ;
+                   rdfs:range :DeploymentState ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "The Deployment State."@en ;
+                   rdfs:label "has deployment state"@en .
+
+:hasLog rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Deployment ;
+                  rdfs:range :Log ;
+                  rdfs:isDefinedBy : ;
+                  dct:issued "2021-03-25"^^xsd:date ;
+                  rdfs:comment "The log of a software agent in a deployment."@en ;
+                  rdfs:label "has Log"@en ;
+.
 
 #
 # External vocabulary usage
