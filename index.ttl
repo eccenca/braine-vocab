@@ -304,24 +304,21 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:New rdf:type  owl:Class ;
-  rdfs:subClassOf :ImageState ;
+:New rdf:type :ImageState ;
   rdfs:label "New"@en ;
   rdfs:comment "The state of an image that has being just created."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:Review rdf:type  owl:Class ;
-  rdfs:subClassOf :ImageState ;
-  rdfs:label "Review"@en ;
+:UnderReview rdf:type :ImageState ;
+  rdfs:label "Under Review"@en ;
   rdfs:comment "The state of an image that is under review."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:Ready rdf:type  owl:Class ;
-  rdfs:subClassOf :ImageState ;
+:Ready rdf:type :ImageState ;
   rdfs:label "Ready"@en ;
   rdfs:comment "The state of an image that is ready for being deployed."@en ;
   rdfs:isDefinedBy : ;
@@ -335,32 +332,28 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:Waiting rdf:type  owl:Class ;
-  rdfs:subClassOf :DeploymentState ;
+:Waiting rdf:type  :DeploymentState ;
   rdfs:label "Waiting"@en ;
   rdfs:comment "The state of a Deployment that is waiting to be deployed."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:Running rdf:type  owl:Class ;
-  rdfs:subClassOf :DeploymentState ;
+:Running rdf:type :DeploymentState ;
   rdfs:label "Running"@en ;
   rdfs:comment "The state of a Deployment that is running."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:StopClean rdf:type  owl:Class ;
-  rdfs:subClassOf :DeploymentState ;
+:StopClean rdf:type :DeploymentState ;
   rdfs:label "Stop Clean"@en ;
   rdfs:comment "The state of a Deployment that stopped."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:StopWithError rdf:type  owl:Class ;
-  rdfs:subClassOf :DeploymentState ;
+:StopWithError rdf:type :DeploymentState ;
   rdfs:label "Stop With Error"@en ;
   rdfs:comment "The state of a Deployment that has stopped due to an error."@en ;
   rdfs:isDefinedBy : ;
@@ -512,30 +505,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "Maximum Number of allocable Pods."@en ;
                    rdfs:label "pods"@en .
-
-:nodeInfo rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :NodeStatus ;
-                   rdfs:range :NodeInfo ;
-                   rdfs:isDefinedBy : ;
-                   dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "Information of a Kubernetes Node."@en ;
-                   rdfs:label "node information"@en .
-
-:image rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :NodeStatus ;
-                   rdfs:range :DiskImage ;
-                   rdfs:isDefinedBy : ;
-                   dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "Image belonging to the Kubernetes Node."@en ;
-                   rdfs:label "image"@en .
-
-:daemonEndpoint rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :NodeStatus ;
-                   rdfs:range :DaemonEndpoint ;
-                   rdfs:isDefinedBy : ;
-                   dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "Daemon endpoint of a Kubernetes Node."@en ;
-                   rdfs:label "daemon endpoint"@en .
 
 #################################################################
 #   Condition Datatype Properties
@@ -851,6 +820,30 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The status of the Kubernetes Node."@en ;
                    rdfs:label "node status"@en .
 
+:nodeInfo rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :NodeStatus ;
+                   rdfs:range :NodeInfo ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Information of a Kubernetes Node."@en ;
+                   rdfs:label "node information"@en .
+
+:image rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :NodeStatus ;
+                   rdfs:range :DiskImage ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Image belonging to the Kubernetes Node."@en ;
+                   rdfs:label "image"@en .
+
+:daemonEndpoint rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :NodeStatus ;
+                   rdfs:range :DaemonEndpoint ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Daemon endpoint of a Kubernetes Node."@en ;
+                   rdfs:label "daemon endpoint"@en .
+
 #################################################################
 #    Event Object Properties
 #################################################################
@@ -906,6 +899,15 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                   dct:issued "2021-03-25"^^xsd:date ;
                   rdfs:comment "The log of a software agent in a deployment."@en ;
                   rdfs:label "has Log"@en ;
+.
+
+:hasImageState rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :DockerImage ;
+                  rdfs:range :ImageState ;
+                  rdfs:isDefinedBy : ;
+                  dct:issued "2021-03-25"^^xsd:date ;
+                  rdfs:comment "The image state."@en ;
+                  rdfs:label "has Image State"@en ;
 .
 
 #
