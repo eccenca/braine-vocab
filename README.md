@@ -1,6 +1,6 @@
 # BRAINE Vocabulary
 
-![BRAINE Vocabulary Overview](schema.ttl.dot.png)
+![BRAINE Vocabulary Overview](https://github.com/eccenca/braine-vocab/blob/develop/artifacts/schema.ttl.dot.png)
 
 The BRAINE ontology consists of vocabularies for describing services, devices, workflows and constraints.
 
