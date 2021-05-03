@@ -304,23 +304,37 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:New rdf:type :ImageState ;
-  rdfs:label "New"@en ;
+:ImageNew rdf:type :ImageState ;
+  rdfs:label "Image New"@en ;
   rdfs:comment "The state of an image that has being just created."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:UnderReview rdf:type :ImageState ;
-  rdfs:label "Under Review"@en ;
+:ImageUnderReview rdf:type :ImageState ;
+  rdfs:label "Image Under Review"@en ;
   rdfs:comment "The state of an image that is under review."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:Ready rdf:type :ImageState ;
-  rdfs:label "Ready"@en ;
-  rdfs:comment "The state of an image that is ready for being deployed."@en ;
+:ImageReviewed rdf:type :ImageState ;
+  rdfs:label "Image Reviewed"@en ;
+  rdfs:comment "The state of an image that is reviewed."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:ImageUnderActivation rdf:type :ImageState ;
+  rdfs:label "Image Under Activation"@en ;
+  rdfs:comment "The state of an image that is under activation."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
+:ImageActive rdf:type :ImageState ;
+  rdfs:label "Image Active"@en ;
+  rdfs:comment "The state of an image that is active."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
