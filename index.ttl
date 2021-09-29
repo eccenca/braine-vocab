@@ -381,6 +381,37 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
+:ProcessingUnit rdf:type  owl:Class ;
+  rdfs:label "Processing Unit"@en ;
+  rdfs:comment "The Processing Unit."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+.
+
+:GPU rdf:type  owl:Class ;
+  rdfs:subClassOf :ProcessingUnit;
+  rdfs:label "Graphical Processing Unit"@en ;
+  rdfs:comment "A Processing Unit of type Graphical."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+.
+
+:CPU rdf:type  owl:Class ;
+  rdfs:subClassOf :ProcessingUnit;
+  rdfs:label "Central Processing Unit"@en ;
+  rdfs:comment "A Processing Unit of type Central."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+.
+
+:TPU rdf:type  owl:Class ;
+  rdfs:subClassOf :ProcessingUnit;
+  rdfs:label "Tensor Processing Unit"@en ;
+  rdfs:comment "A Processing Unit of type Tensor."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+.
+
 #################################################################
 #    Datatype Properties
 #################################################################
@@ -938,6 +969,24 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                   dct:issued "2021-03-25"^^xsd:date ;
                   rdfs:comment "The image state."@en ;
                   rdfs:label "has Image State"@en ;
+.
+
+:hasProcessingUnitType rdf:type owl:ObjectProperty ;
+  rdfs:domain :ComputationalResources ;
+  rdfs:range :ProcessingUnit ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+  rdfs:comment "The type of the Processing Unit (PU)."@en ;
+  rdfs:label "has Processing Unit type"@en ;
+.
+
+:allocateComputationalResources rdf:type owl:ObjectProperty ;
+  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:range :ComputationalResources ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-09-29"^^xsd:date ;
+  rdfs:comment "The computational resources to allocate."@en ;
+  rdfs:label "allocate computational resources"@en ;
 .
 
 #
