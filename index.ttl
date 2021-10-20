@@ -388,24 +388,21 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-09-29"^^xsd:date ;
 .
 
-:GPU rdf:type  owl:Class ;
-  rdfs:subClassOf :ProcessingUnit;
+:GPU rdf:type  :ProcessingUnit ;
   rdfs:label "Graphical Processing Unit"@en ;
   rdfs:comment "A Processing Unit of type Graphical."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-09-29"^^xsd:date ;
 .
 
-:CPU rdf:type  owl:Class ;
-  rdfs:subClassOf :ProcessingUnit;
+:CPU rdf:type  :ProcessingUnit ;
   rdfs:label "Central Processing Unit"@en ;
   rdfs:comment "A Processing Unit of type Central."@en ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-09-29"^^xsd:date ;
 .
 
-:TPU rdf:type  owl:Class ;
-  rdfs:subClassOf :ProcessingUnit;
+:TPU rdf:type  :ProcessingUnit ;
   rdfs:label "Tensor Processing Unit"@en ;
   rdfs:comment "A Processing Unit of type Tensor."@en ;
   rdfs:isDefinedBy : ;
