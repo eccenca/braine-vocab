@@ -274,13 +274,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
-:ServiceDeploymentSpecification rdf:type owl:Class ;
-  rdfs:label "Service Deployment Specification"@en ;
-  rdfs:comment "A deployment specification containing what (service profile) and how (node) to execute a service."@en ;
-  rdfs:isDefinedBy : ;
-  dct:issued "2021-03-25"^^xsd:date ;
-.
-
 :Deployment rdf:type owl:Class ;
   rdfs:label "Deployment"@en ;
   rdfs:comment "A deployment of a service specification containing meta information such as status, logs, and failures."@en ;
@@ -939,7 +932,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #################################################################
 
 :serviceProfile rdf:type owl:ObjectProperty ;
-                   rdfs:domain :ServiceDeploymentSpecification ;
+                   rdfs:domain :Deployment ;
                    rdfs:range :ServiceProfile ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -947,20 +940,12 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "service profile"@en .
 
 :placement rdf:type owl:ObjectProperty ;
-                   rdfs:domain :ServiceDeploymentSpecification ;
+                   rdfs:domain :ServiceProfile ;
                    rdfs:range :KubernetesNode ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
                    rdfs:comment "A Kubernetes Node to be used for service profile deployment."@en ;
                    rdfs:label "placement"@en .
-
-:hasDeploymentSpecification rdf:type owl:ObjectProperty ;
-                   rdfs:domain :Deployment ;
-                   rdfs:range :ServiceDeploymentSpecification ;
-                   rdfs:isDefinedBy : ;
-                   dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "The Service Deployment Specification."@en ;
-                   rdfs:label "has deployment specification"@en .
 
 :hasDeploymentState rdf:type owl:ObjectProperty ;
                    rdfs:domain :Deployment ;
@@ -995,15 +980,6 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-09-29"^^xsd:date ;
   rdfs:comment "The type of the Processing Unit (PU)."@en ;
   rdfs:label "has Processing Unit type"@en ;
-.
-
-:allocateComputationalResources rdf:type owl:ObjectProperty ;
-  rdfs:domain :ServiceDeploymentSpecification ;
-  rdfs:range :ComputationalResources ;
-  rdfs:isDefinedBy : ;
-  dct:issued "2021-09-29"^^xsd:date ;
-  rdfs:comment "The computational resources to allocate."@en ;
-  rdfs:label "allocate computational resources"@en ;
 .
 
 #
