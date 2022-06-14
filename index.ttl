@@ -17,9 +17,9 @@
   rdfs:label "ITOPS: IT Operations Ontology"@en ;
   rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, values and constraints."@en ;
   dct:issued "2021-01-08"^^xsd:date ;
-  dct:modified "2021-01-08"^^xsd:date ;
+  dct:modified "2022-06-13"^^xsd:date ;
   owl:versionInfo "SNAPSHOT" ;
-  dct:rights "Copyright © 2021 eccenca GmbH" ;
+  dct:rights "Copyright © 2022 eccenca GmbH" ;
   dct:publisher ecc:eccenca-GmbH ;
   <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/> ;
   dct:creator <https://aksw.org/EdgardMarx>, <http://sebastian.tramp.name> ;
@@ -339,6 +339,13 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-03-25"^^xsd:date ;
 .
 
+:ImageInactive rdf:type :ImageState ;
+  rdfs:label "Image Inactive"@en ;
+  rdfs:comment "The state of an image that is inactive."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2021-03-25"^^xsd:date ;
+.
+
 :DeploymentState rdf:type  owl:Class ;
   rdfs:label "Deployment State"@en ;
   rdfs:comment "The state of a Deployment."@en ;
@@ -509,7 +516,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "address type"@en .
 
 :cpus rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :ComputationalResources ;
+                   rdfs:domain :ComputationalResources, :ServiceProfile ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -517,7 +524,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "cpus"@en .
 
 :ephemeral-storage rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :ComputationalResources ;
+                   rdfs:domain :ComputationalResources, :ServiceProfile ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
@@ -600,12 +607,23 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The type of the condition."@en ;
                    rdfs:label "type"@en .
 
+
+
 #################################################################
 #    BRAINE Datatype Properties
 #################################################################
 
+:variables rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Deployable ;
+  rdfs:range xsd:string ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-06-13"^^xsd:date ;
+  rdfs:comment "The number of network slices."@en ;
+  rdfs:label "number of network slices"@en ;
+.
+
 :numberOfNetworkSlices rdf:type owl:DatatypeProperty ;
-  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:domain :ServiceProfile ;
   rdfs:range xsd:int ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
@@ -614,7 +632,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 .
 
 :numberOfNetworkTenants rdf:type owl:DatatypeProperty ;
-  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:domain :ServiceProfile ;
   rdfs:range xsd:int ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
@@ -623,7 +641,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 .
 
 :hasEncryption rdf:type owl:DatatypeProperty ;
-  rdfs:domain :ServiceDeploymentSpecification ;
+  rdfs:domain :ServiceProfile ;
   rdfs:range xsd:boolean ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-03-25"^^xsd:date ;
@@ -665,10 +683,12 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 
 :tag rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ServiceProfile ;
+                   rdfs:domain :DockerImage;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
                    dct:issued "2021-02-08"^^xsd:date ;
-                   rdfs:comment "A Service Profile tag used to better describe the service profile."@en ;
+                   dct:modified "2021-11-09"^^xsd:date ;
+                   rdfs:comment "A tag used for identification."@en ;
                    rdfs:label "tag"@en .
 
 #################################################################
@@ -969,7 +989,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 .
 
 :hasProcessingUnitType rdf:type owl:ObjectProperty ;
-  rdfs:domain :ComputationalResources ;
+  rdfs:domain :ComputationalResources, :ServiceProfile ;
   rdfs:range :ProcessingUnit ;
   rdfs:isDefinedBy : ;
   dct:issued "2021-09-29"^^xsd:date ;
