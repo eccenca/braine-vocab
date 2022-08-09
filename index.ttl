@@ -1,4 +1,4 @@
-@prefix : <https://braine.eccenca.dev/vocabulary/itops#> .
+@prefix : <https://braine.eccenca.dev/vocabulary/lift#> .
 @prefix ecc: <https://ns.eccenca.com/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -14,8 +14,8 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 
 : rdf:type owl:Ontology , voaf:Vocabulary ;
-  rdfs:label "ITOPS: IT Operations Ontology"@en ;
-  rdfs:comment "The ITOPS ontology consists of vocabularies for describing services, devices, workflows, measurements, values and constraints."@en ;
+  rdfs:label "lift: A vocabulary for managing distributed and containerized workloads and services."@en ;
+  rdfs:comment "The lift vocabulary ease the containerized workload and service management through concepts such as services, devices, workflows, measurements, values and constraints."@en ;
   dct:issued "2021-01-08"^^xsd:date ;
   dct:modified "2022-06-13"^^xsd:date ;
   owl:versionInfo "SNAPSHOT" ;
@@ -27,8 +27,8 @@
     <http://purl.org/dc/terms/> ,
     <http://purl.org/vocab/vann/> ,
     <http://xmlns.com/foaf/0.1/> ;
-  vann:preferredNamespacePrefix "itops" ;
-  vann:preferredNamespaceUri "https://braine.eccenca.dev/vocabulary/itops#" ;
+  vann:preferredNamespacePrefix "lift" ;
+  vann:preferredNamespaceUri "https://braine.eccenca.dev/vocabulary/lift#" ;
 .
 
 ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
@@ -470,11 +470,50 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   dct:issued "2021-09-29"^^xsd:date ;
 .
 
+:Workflow rdf:type owl:Class ;
+  rdfs:subClassOf :Deployable ;
+  rdfs:label "Workflow"@en ;
+  rdfs:comment "A workflow."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-08-03"^^xsd:date ;
+.
+
+:Register rdf:type owl:Class ;
+  rdfs:label "Register"@en ;
+  rdfs:comment "A register."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-08-03"^^xsd:date ;
+.
+
+:WorkflowRegister rdf:type owl:Class ;
+  rdfs:subClassOf :Register ;
+  rdfs:label "Workflow Register"@en ;
+  rdfs:comment "A workflow register."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-08-03"^^xsd:date ;
+.
+
+:ServiceRegister rdf:type owl:Class ;
+  rdfs:subClassOf :Register ;
+  rdfs:label "Service Register"@en ;
+  rdfs:comment "A service register."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-08-03"^^xsd:date ;
+.
+
+:ImageRegister rdf:type owl:Class ;
+  rdfs:subClassOf :Register ;
+  rdfs:label "Image Register"@en ;
+  rdfs:comment "A image register."@en ;
+  rdfs:isDefinedBy : ;
+  dct:issued "2022-08-03"^^xsd:date ;
+.
+
 #################################################################
 #    Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#telemetry/timestamp> rdf:type owl:DatatypeProperty;
+<https://braine.eccenca.dev/vocabulary/lift#telemetry/timestamp> rdf:type owl:DatatypeProperty;
                    rdfs:domain :Telemetry ;
                    rdfs:range xsd:date ;
                    rdfs:isDefinedBy : ;
@@ -483,7 +522,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "timestamp"@en ;
 .
 
-<https://braine.eccenca.dev/vocabulary/itops#telemetry/window> rdf:type owl:DatatypeProperty;
+<https://braine.eccenca.dev/vocabulary/lift#telemetry/window> rdf:type owl:DatatypeProperty;
                    rdfs:domain :Telemetry ;
                    rdfs:range xsd:integer ;
                    rdfs:isDefinedBy : ;
@@ -492,7 +531,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "window"@en ;
 .
 
-<https://braine.eccenca.dev/vocabulary/itops#measurement/value> rdf:type owl:DatatypeProperty;
+<https://braine.eccenca.dev/vocabulary/lift#measurement/value> rdf:type owl:DatatypeProperty;
                    rdfs:subPropertyOf qudt:value ;
                    rdfs:domain :Measurement ;
                    rdfs:range rdfs:Literal ;
@@ -501,7 +540,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The value (numerical or not) of a mesurement."@en ;
                    rdfs:label "value"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#map/key> rdf:type owl:DatatypeProperty;
+<https://braine.eccenca.dev/vocabulary/lift#map/key> rdf:type owl:DatatypeProperty;
                    rdfs:domain :Map ;
                    rdfs:range rdfs:Literal ;
                    rdfs:isDefinedBy : ;
@@ -509,7 +548,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The key of the mapping."@en ;
                    rdfs:label "key"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#map/value> rdf:type owl:DatatypeProperty;
+<https://braine.eccenca.dev/vocabulary/lift#map/value> rdf:type owl:DatatypeProperty;
                    rdfs:domain :Map ;
                    rdfs:range rdfs:Literal ;
                    rdfs:isDefinedBy : ;
@@ -521,7 +560,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Kubernetes Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#deployable/manifest> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#deployable/manifest> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Deployable ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -529,7 +568,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A set of instructions describing how to perform a deployment."@en ;
                    rdfs:label "manifest"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#kubernetesObject/resourceVersion> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#kubernetesObject/resourceVersion> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -537,7 +576,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The Kubernetes resource version."@en ;
                    rdfs:label "resource version"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#kubernetesObject/selfLink> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#kubernetesObject/selfLink> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -545,7 +584,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A link to the Kubernetes Object."@en ;
                    rdfs:label "self link"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#kubernetesObject/uid> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#kubernetesObject/uid> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :KubernetesObject ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -553,7 +592,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The UID of the Kubernetes Object."@en ;
                    rdfs:label "uid"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/address/addressValue> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/address/addressValue> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Address ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -561,7 +600,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The network address of the Kubernetes Object."@en ;
                    rdfs:label "address value"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/address/addressType> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/address/addressType> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Address ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -569,7 +608,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The type of the network address."@en ;
                    rdfs:label "address type"@en .
 
-:cpus rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/cpus> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources, :ServiceProfile ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -577,7 +616,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The number of processing units."@en ;
                    rdfs:label "cpus"@en .
 
-:ephemeral-storage rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/ephemeral-storage> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources, :ServiceProfile ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -585,7 +624,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The volatile temporary storage attached to your instances which is only present during the running lifetime of the instance."@en ;
                    rdfs:label "ephemeral-storage"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/computationalResources/hugepages-1Gi> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/hugepages-1Gi> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -593,7 +632,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Number of Huge Pages of 1 Gibibyte."@en ;
                    rdfs:label "hugepages-1Gi"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/computationalResources/hugepages-2Mi> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/hugepages-2Mi> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -601,7 +640,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Number of Huge Pages of 2 Mibibytes."@en ;
                    rdfs:label "hugepages-2Mi"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/computationalResources/pods> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/pods> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ComputationalResources ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -613,7 +652,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   PodStatus Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/hostIP> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/hostIP> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodStatus ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -621,7 +660,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "IP address of the host to which the pod is assigned. Empty if not yet scheduled."@en ;
                    rdfs:label "hostIP"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/phase> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/phase> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodStatus ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -629,7 +668,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod's status. There are five possible phase values: Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase."@en ;
                    rdfs:label "phase"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/podIP> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/podIP> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodStatus ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -637,7 +676,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated."@en ;
                    rdfs:label "podIP"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/startTime> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/startTime> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodStatus ;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -645,7 +684,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod."@en ;
                    rdfs:label "startTime"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/qosClass> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/qosClass> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodStatus ;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -657,7 +696,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   PodCondition Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/condition/lastTransitionTime> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/condition/lastTransitionTime> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodCondition ;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -665,7 +704,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Last time the condition transitioned from one status to another."@en ;
                    rdfs:label "lastTransitionTime"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/condition/lastProbeTime> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/condition/lastProbeTime> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodCondition ;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -673,7 +712,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Last time the condition was probed."@en ;
                    rdfs:label "lastProbeTime"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status/condition/message> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status/condition/message> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodCondition;
                    rdfs:range xsd:StringValueType;
                    rdfs:isDefinedBy : ;
@@ -685,7 +724,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   PodSpec Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/dnsPolicy> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/dnsPolicy> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -693,7 +732,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'."@en ;
                    rdfs:label "dnsPolicy"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/enableServiceLinks> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/enableServiceLinks> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:BooleanValueType ;
                    rdfs:isDefinedBy : ;
@@ -701,7 +740,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true."@en ;
                    rdfs:label "enableServiceLinks"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/nodeName> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/nodeName> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:BooleanValueType ;
                    rdfs:isDefinedBy : ;
@@ -709,7 +748,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements."@en ;
                    rdfs:label "nodeName"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/preemptionPolicy> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/preemptionPolicy> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -717,7 +756,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset."@en ;
                    rdfs:label "preemptionPolicy"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/priority> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/priority> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:IntValueType ;
                    rdfs:isDefinedBy : ;
@@ -725,7 +764,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority."@en ;
                    rdfs:label "priority"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/restartPolicy> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/restartPolicy> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -733,7 +772,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy."@en ;
                    rdfs:label "restartPolicy"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/schedulerName> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/schedulerName> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -741,7 +780,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler."@en ;
                    rdfs:label "schedulerName"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/serviceAccount> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/serviceAccount> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -749,7 +788,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead."@en ;
                    rdfs:label "serviceAccount"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/serviceAccountName> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/serviceAccountName> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -757,7 +796,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/."@en ;
                    rdfs:label "serviceAccountName"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/terminationGracePeriodSeconds> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/terminationGracePeriodSeconds> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :PodSpec ;
                    rdfs:range xsd:IntegerValueType ;
                    rdfs:isDefinedBy : ;
@@ -769,7 +808,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Toleration Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration/effect> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration/effect> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Toleration ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -777,7 +816,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute."@en ;
                    rdfs:label "effect"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration/key> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration/key> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Toleration ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -785,7 +824,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys."@en ;
                    rdfs:label "key"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration/operator> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration/operator> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Toleration ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -793,7 +832,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category."@en ;
                    rdfs:label "operator"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration/tolerationSeconds> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration/tolerationSeconds> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Toleration ;
                    rdfs:range xsd:IntegerValueType ;
                    rdfs:isDefinedBy : ;
@@ -801,7 +840,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system."@en ;
                    rdfs:label "tolerationSeconds"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration/value> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration/value> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Toleration ;
                    rdfs:range xsd:IntegerValueType ;
                    rdfs:isDefinedBy : ;
@@ -813,7 +852,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Condition Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#condition/lastTransitionTime> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#condition/lastTransitionTime> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Condition;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -821,7 +860,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The last transition time of the Kubernetes Object."@en ;
                    rdfs:label "lastTransitionTime"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#condition/type> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#condition/type> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Condition ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -829,7 +868,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Type is the type of the condition."@en ;
                    rdfs:label "type"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#condition/status> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#condition/status> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Condition ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -841,7 +880,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   NodeCondition Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/condition/lastHeartbeatTime> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/condition/lastHeartbeatTime> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeCondition ;
                    rdfs:range xsd:DateTimeValueType ;
                    rdfs:isDefinedBy : ;
@@ -849,7 +888,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The last heartbeat time of the Kubernetes object."@en ;
                    rdfs:label "lastHeartbeatTime"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/condition/reason> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/condition/reason> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeCondition;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -861,7 +900,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Container Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/image> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/image> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -869,7 +908,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets."@en ;
                    rdfs:label "image"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/imagePoolPolicy> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/imagePoolPolicy> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -877,7 +916,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images."@en ;
                    rdfs:label "imagePoolPolicy"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/terminationMessagePath> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/terminationMessagePath> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -885,7 +924,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated."@en ;
                    rdfs:label "terminationMessagePath"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/terminationMessagePolicy> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/terminationMessagePolicy> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -893,7 +932,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated."@en ;
                    rdfs:label "terminationMessagePolicy"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/workingDir> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/workingDir> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -901,7 +940,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated."@en ;
                    rdfs:label "workingDir"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/args> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/args> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -909,7 +948,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell."@en ;
                    rdfs:label "args"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/command> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/command> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:StringValueType ;
                    rdfs:isDefinedBy : ;
@@ -917,7 +956,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell."@en ;
                    rdfs:label "command"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/tty> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/tty> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:boolean ;
                    rdfs:isDefinedBy : ;
@@ -925,7 +964,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false."@en ;
                    rdfs:label "tty"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/stdinOnce> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/stdinOnce> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:boolean ;
                    rdfs:isDefinedBy : ;
@@ -933,7 +972,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false."@en ;
                    rdfs:label "stdinOnce"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container/stdin> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container/stdin> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Container ;
                    rdfs:range xsd:boolean ;
                    rdfs:isDefinedBy : ;
@@ -950,7 +989,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Deployable Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#deployable/variables> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#deployable/variables> rdf:type owl:DatatypeProperty ;
   rdfs:domain :Deployable ;
   rdfs:range xsd:string ;
   rdfs:isDefinedBy : ;
@@ -963,7 +1002,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Service Profile Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#serviceProfile/numberOfNetworkSlices> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#serviceProfile/numberOfNetworkSlices> rdf:type owl:DatatypeProperty ;
   rdfs:domain :ServiceProfile ;
   rdfs:range xsd:int ;
   rdfs:isDefinedBy : ;
@@ -972,7 +1011,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   rdfs:label "number of network slices"@en ;
 .
 
-<https://braine.eccenca.dev/vocabulary/itops#serviceProfile/numberOfNetworkTenants> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#serviceProfile/numberOfNetworkTenants> rdf:type owl:DatatypeProperty ;
   rdfs:domain :ServiceProfile ;
   rdfs:range xsd:int ;
   rdfs:isDefinedBy : ;
@@ -981,7 +1020,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
   rdfs:label "number of tentants"@en ;
 .
 
-<https://braine.eccenca.dev/vocabulary/itops#serviceProfile/hasEncryption> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#serviceProfile/hasEncryption> rdf:type owl:DatatypeProperty ;
   rdfs:domain :ServiceProfile ;
   rdfs:range xsd:boolean ;
   rdfs:isDefinedBy : ;
@@ -994,7 +1033,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Log Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#log/startDate> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#log/startDate> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Log ;
                    rdfs:range xsd:date ;
                    rdfs:isDefinedBy : ;
@@ -1002,7 +1041,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The log starting date."@en ;
                    rdfs:label "start date"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#log/endDate> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#log/endDate> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Log ;
                    rdfs:range xsd:date ;
                    rdfs:isDefinedBy : ;
@@ -1010,7 +1049,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The log ending date."@en ;
                    rdfs:label "end date"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#log/content> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#log/content> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Log ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1018,7 +1057,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The log content."@en ;
                    rdfs:label "content"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#log/agent> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#log/agent> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Log ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1030,7 +1069,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   ServiceProfile and DockerImage common Datatype Properties
 #################################################################
 
-:tag rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#serviceProfile/tag> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :ServiceProfile ;
                    rdfs:domain :DockerImage;
                    rdfs:range xsd:string ;
@@ -1044,7 +1083,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Daemon Endpoint Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/daemonEndpoint/port> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/daemonEndpoint/port> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :DaemonEndpoint ;
                    rdfs:range xsd:int ;
                    rdfs:isDefinedBy : ;
@@ -1056,7 +1095,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   DiskImage Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/diskImage/size> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/diskImage/size> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :DiskImage ;
                    rdfs:range xsd:integer ;
                    rdfs:isDefinedBy : ;
@@ -1068,7 +1107,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   NodeInfo Datatype Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/architecture> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/architecture> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1076,7 +1115,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The processing architecture of the Kubernetes Node."@en ;
                    rdfs:label "architecture"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/boodID> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/boodID> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1084,7 +1123,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The ID of the boot of the Kubernetes Node."@en ;
                    rdfs:label "boot ID"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/containerRuntimeVersion> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/containerRuntimeVersion> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1092,7 +1131,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The version of the container running at the Kubernetes Node."@en ;
                    rdfs:label "container runtime version"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/kernelVersion> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/kernelVersion> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1100,7 +1139,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The version of the kernel running at the Kubernetes Node."@en ;
                    rdfs:label "kernel version"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/kubeProxyVersion> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/kubeProxyVersion> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1108,7 +1147,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The version of the Kubernetes proxy running at the Kubernetes Node."@en ;
                    rdfs:label "kube proxy version"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/machineID> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/machineID> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1116,7 +1155,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The ID of the machine running at the Kubernetes Node."@en ;
                    rdfs:label "machine ID"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/operationalSystem> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/operationalSystem> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1124,7 +1163,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The operational system running at the Kubernetes Node."@en ;
                    rdfs:label "operational system"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/osImage> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/osImage> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1132,7 +1171,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The name of the image running the oprational system operational system at the Kubernetes Node."@en ;
                    rdfs:label "operational system image"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/info/systemUUID> rdf:type owl:DatatypeProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/info/systemUUID> rdf:type owl:DatatypeProperty ;
                    rdfs:domain :NodeInfo ;
                    rdfs:range xsd:string ;
                    rdfs:isDefinedBy : ;
@@ -1141,10 +1180,22 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:label "system UUID"@en .
 
 #################################################################
+#   Register Datatype Properties
+#################################################################
+
+<https://braine.eccenca.dev/vocabulary/lift#register/address> rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Register ;
+                   rdfs:range xsd:string ;
+                   rdfs:isDefinedBy : ;
+                   dct:issued "2021-02-08"^^xsd:date ;
+                   rdfs:comment "Register network address."@en ;
+                   rdfs:label "address"@en .
+
+#################################################################
 #    Telemetry Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#telemetry/belongsTo> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#telemetry/belongsTo> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Telemetry ;
                    rdfs:range :KubernetesObject ;
                    rdfs:isDefinedBy : ;
@@ -1152,7 +1203,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Telemetry belonging to the resource."@en ;
                    rdfs:label "belongs to"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#telemetry/measurement> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#telemetry/measurement> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Telemetry ;
                    rdfs:range :Measurement ;
                    rdfs:isDefinedBy : ;
@@ -1164,7 +1215,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    Measurement Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#measurement/unit> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#measurement/unit> rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf qudt:unit ;
                    rdfs:domain :Measurement ;
                    rdfs:range qudt:Unit ;
@@ -1173,7 +1224,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A value or component that may be expressed in numbers in some unit."@en ;
                    rdfs:label "unit"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#measurement/source> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#measurement/source> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Measurement ;
                    rdfs:range rdfs:Resource ;
                    rdfs:isDefinedBy : ;
@@ -1185,7 +1236,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Kubernetes Node Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/customAnnotation> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/customAnnotation> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesNode ;
                    rdfs:range :Map ;
                    rdfs:isDefinedBy : ;
@@ -1193,7 +1244,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A customized annotation generated by a Kubernetes agent."@en ;
                    rdfs:label "custom annotation"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/customLabel> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/customLabel> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesNode ;
                    rdfs:range :Map ;
                    rdfs:isDefinedBy : ;
@@ -1201,7 +1252,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A customized label generated by a Kubernetes agent."@en ;
                    rdfs:label "custom label"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/condition> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/condition> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesNode ;
                    rdfs:range :NodeCondition ;
                    rdfs:isDefinedBy : ;
@@ -1209,7 +1260,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A status condition of the Kubernetes object."@en ;
                    rdfs:label "condition"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesNode ;
                    rdfs:range :NodeStatus ;
                    rdfs:isDefinedBy : ;
@@ -1221,7 +1272,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Kubernetes Node Status Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/allocable> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/allocable> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus ;
                    rdfs:range :ComputationalResources ;
                    rdfs:isDefinedBy : ;
@@ -1229,7 +1280,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The allocable computational resources."@en ;
                    rdfs:label "allocable"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/capacity> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/capacity> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus ;
                    rdfs:range :ComputationalResources ;
                    rdfs:isDefinedBy : ;
@@ -1237,7 +1288,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The computational capacity of the Kubernetes object."@en ;
                    rdfs:label "capacity"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/address> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/address> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus;
                    rdfs:range :Address ;
                    rdfs:isDefinedBy : ;
@@ -1245,7 +1296,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A network address of the Kubernetes object."@en ;
                    rdfs:label "address"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/nodeInfo> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/nodeInfo> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus ;
                    rdfs:range :NodeInfo ;
                    rdfs:isDefinedBy : ;
@@ -1253,7 +1304,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Information of a Kubernetes Node."@en ;
                    rdfs:label "node information"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/image> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/image> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus ;
                    rdfs:range :DiskImage ;
                    rdfs:isDefinedBy : ;
@@ -1261,7 +1312,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "Image belonging to the Kubernetes Node."@en ;
                    rdfs:label "image"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#node/status/daemonEndpoint> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#node/status/daemonEndpoint> rdf:type owl:ObjectProperty ;
                    rdfs:domain :NodeStatus ;
                    rdfs:range :DaemonEndpoint ;
                    rdfs:isDefinedBy : ;
@@ -1273,7 +1324,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #   Kubernetes Pod Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesPod;
                    rdfs:range :Spec ;
                    rdfs:isDefinedBy : ;
@@ -1281,7 +1332,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The spec of a POD."@en ;
                    rdfs:label "spec"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/condition> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/condition> rdf:type owl:ObjectProperty ;
                    rdfs:domain :PodStatus;
                    rdfs:range :PodCondition ;
                    rdfs:isDefinedBy : ;
@@ -1289,7 +1340,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A PodCondition containing the details of the condition of the pod in a given time."@en ;
                    rdfs:label "condition"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/status> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/status> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesPod ;
                    rdfs:range :PodStatus ;
                    rdfs:isDefinedBy : ;
@@ -1301,7 +1352,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    Pod Spec Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/container> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/container> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Spec;
                    rdfs:range :Container ;
                    rdfs:isDefinedBy : ;
@@ -1309,7 +1360,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A pod Container spec."@en ;
                    rdfs:label "container"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#pod/spec/toleration> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#pod/spec/toleration> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Spec;
                    rdfs:range :Toleration ;
                    rdfs:isDefinedBy : ;
@@ -1321,7 +1372,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    Event Object Properties
 #################################################################
 
-:object rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#event/object> rdf:type owl:ObjectProperty ;
                    rdfs:domain :KubernetesEvent ;
                    rdfs:range :KubernetesObject ;
                    rdfs:isDefinedBy : ;
@@ -1333,7 +1384,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    DockerImage Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#image/state> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#image/state> rdf:type owl:ObjectProperty ;
                   rdfs:domain :DockerImage ;
                   rdfs:range :ImageState ;
                   rdfs:isDefinedBy : ;
@@ -1346,7 +1397,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    ServiceProfile Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#serviceProfile/placement> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#serviceProfile/placement> rdf:type owl:ObjectProperty ;
                    rdfs:domain :ServiceProfile ;
                    rdfs:range :KubernetesNode ;
                    rdfs:isDefinedBy : ;
@@ -1358,7 +1409,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    BRAINE Deployment Object Properties
 #################################################################
 
-<https://braine.eccenca.dev/vocabulary/itops#deployment/serviceProfile> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#deployment/serviceProfile> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Deployment ;
                    rdfs:range :ServiceProfile ;
                    rdfs:isDefinedBy : ;
@@ -1366,7 +1417,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "A Service Profile to be deployed."@en ;
                    rdfs:label "service profile"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#deployment/state> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#deployment/state> rdf:type owl:ObjectProperty ;
                    rdfs:domain :Deployment ;
                    rdfs:range :DeploymentState ;
                    rdfs:isDefinedBy : ;
@@ -1374,7 +1425,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
                    rdfs:comment "The Deployment State."@en ;
                    rdfs:label "state"@en .
 
-<https://braine.eccenca.dev/vocabulary/itops#deployment/log> rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#deployment/log> rdf:type owl:ObjectProperty ;
                   rdfs:domain :Deployment ;
                   rdfs:range :Log ;
                   rdfs:isDefinedBy : ;
@@ -1387,7 +1438,7 @@ ecc:eccenca-GmbH rdf:type foaf:Organization, dct:Agent ;
 #    ComputationalResources and ServiceProfile common Object Properties
 #################################################################
 
-:processingUnitType rdf:type owl:ObjectProperty ;
+<https://braine.eccenca.dev/vocabulary/lift#computationalResources/processingUnitType> rdf:type owl:ObjectProperty ;
                   rdfs:domain :ComputationalResources, :ServiceProfile ;
                   rdfs:range :ProcessingUnit ;
                   rdfs:isDefinedBy : ;
